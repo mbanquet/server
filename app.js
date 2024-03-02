@@ -61,6 +61,7 @@ const Debt = require('./routes/debt');
 const Attendance = require('./routes/attendance');
 const CashInFlowV1 = require('./routes/cash_flow_v1');
 const AppCashFlow = require('./routes/appcashflow');
+const Secuirty = require('./routes/security');
 
 
 
@@ -102,8 +103,7 @@ app.use('/api/v1/news', News)
 app.use('/api/v1/debt', Debt)
 app.use('/api/v1/attendance', Attendance)
 app.use('/api/v1/app', AppCashFlow)
-
-
+app.use('/api/v1/security', Secuirty)
 app.use('/api/v2/cash-in-flow', CashInFlowV1)
 
 

@@ -42,6 +42,16 @@ router.post('/get-cash-flow', (req, res) => {
     })
 })
 
+
+router.get('/in-app-cash-inflow', (req, res) => {
+    CashInflow.find({'transactionType': req.query.type}, function(error, result) {
+        if(error || result === null || result === undefined) {
+            res.status(404).send({'status': 'Data Not Found'});
+            return
+        }
+        res.status(200).send(result)
+    }).sort({ _id: -1 })
+})
 router.post('/add-cash-inflow', (req, res) => {
     const payload = req && req.body;
     const docs = new CashInflow(payload);
