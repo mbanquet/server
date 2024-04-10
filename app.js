@@ -62,6 +62,8 @@ const Attendance = require('./routes/attendance');
 const CashInFlowV1 = require('./routes/cash_flow_v1');
 const AppCashFlow = require('./routes/appcashflow');
 const Secuirty = require('./routes/security');
+const Batuwa = require('./routes/batuwa');
+
 
 
 
@@ -105,6 +107,7 @@ app.use('/api/v1/attendance', Attendance)
 app.use('/api/v1/app', AppCashFlow)
 app.use('/api/v1/security', Secuirty)
 app.use('/api/v2/cash-in-flow', CashInFlowV1)
+app.use('/api/v1/batuwa', Batuwa)
 
 
 
@@ -209,7 +212,8 @@ app.use(express.static(process.cwd()+"/www/"));
 app.get('/tabs/tab2', (req,res) => {
     res.sendFile(process.cwd()+"/www/index.html")
   });
-
+// const product_list_routes = require('./routes/product_listing');
+// app.use('/api/v1/product', product_list_routes);
 
 
 console.log(logSymbols.info, "Connecting to Database...");

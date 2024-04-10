@@ -98,6 +98,14 @@ router.get('/get-booking-admin', (req, res) => {
     })
 })
 
+router.post('/filter-booking', (req, res) => {
+    const payload = req && req.body;
+    console.log(payload);
+    Booking.find(payload, function(err, result){
+        res.status(200).send(result);
+    })
+})
+
 router.get('/remove-booking', (req, res) => {
 
 })
