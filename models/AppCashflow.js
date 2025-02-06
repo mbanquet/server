@@ -8,4 +8,4 @@ const AppCashFlow = mongoose.Schema({
   description: String,
   })
 
-module.exports = mongoose.model('appcashflow', AppCashFlow)
+module.exports = mongoose.model('appcashflows', AppCashFlow)
