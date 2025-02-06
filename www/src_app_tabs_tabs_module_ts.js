@@ -1,7 +1,7 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_tabs_tabs_module_ts"],{
 
-/***/ 530:
+/***/ 7991:
 /*!*********************************************!*\
   !*** ./src/app/tabs/tabs-routing.module.ts ***!
   \*********************************************/
@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _tabs_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.page */ 7942);
+/* harmony import */ var _tabs_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.page */ 3962);
 
 
 
@@ -26,15 +26,19 @@ const routes = [
         children: [
             {
                 path: 'tab1',
-                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_tab1_tab1_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../tab1/tab1.module */ 2168)).then(m => m.Tab1PageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_tab1_tab1_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../tab1/tab1.module */ 9634)).then(m => m.Tab1PageModule)
             },
             {
                 path: 'tab2',
-                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_tab2_tab2_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../tab2/tab2.module */ 4608)).then(m => m.Tab2PageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_tab2_tab2_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../tab2/tab2.module */ 1284)).then(m => m.Tab2PageModule)
             },
             {
                 path: 'tab3',
-                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_tab3_tab3_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../tab3/tab3.module */ 3746)).then(m => m.Tab3PageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_booking-calendar_booking-calendar_module_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_tab3_tab3_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../tab3/tab3.module */ 573)).then(m => m.Tab3PageModule)
+            },
+            {
+                path: 'tab4',
+                loadChildren: () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../tabs4/tabs4.module */ 3106)).then(m => m.Tabs4PageModule)
             },
             {
                 path: '',
@@ -44,8 +48,8 @@ const routes = [
         ]
     },
     {
-        path: '',
-        redirectTo: '/tabs/tab1',
+        path: 'tabs/tab1',
+        redirectTo: '/tabs',
         pathMatch: 'full'
     }
 ];
@@ -61,7 +65,7 @@ TabsPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
-/***/ 5564:
+/***/ 6432:
 /*!*************************************!*\
   !*** ./src/app/tabs/tabs.module.ts ***!
   \*************************************/
@@ -76,9 +80,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 2508);
-/* harmony import */ var _tabs_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs-routing.module */ 530);
-/* harmony import */ var _tabs_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page */ 7942);
-/* harmony import */ var _calendar_calendar_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../calendar/calendar.module */ 979);
+/* harmony import */ var _tabs_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs-routing.module */ 7991);
+/* harmony import */ var _tabs_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page */ 3962);
+/* harmony import */ var _calendar_calendar_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../calendar/calendar.module */ 5270);
 
 
 
@@ -98,7 +102,8 @@ TabsPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
             _tabs_routing_module__WEBPACK_IMPORTED_MODULE_0__.TabsPageRoutingModule,
             _calendar_calendar_module__WEBPACK_IMPORTED_MODULE_2__.CalendarPageModule
         ],
-        declarations: [_tabs_page__WEBPACK_IMPORTED_MODULE_1__.TabsPage]
+        declarations: [_tabs_page__WEBPACK_IMPORTED_MODULE_1__.TabsPage],
+        exports: [_tabs_page__WEBPACK_IMPORTED_MODULE_1__.TabsPage]
     })
 ], TabsPageModule);
 
@@ -106,7 +111,7 @@ TabsPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
 
 /***/ }),
 
-/***/ 7942:
+/***/ 3962:
 /*!***********************************!*\
   !*** ./src/app/tabs/tabs.page.ts ***!
   \***********************************/
@@ -125,7 +130,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TabsPage = class TabsPage {
-    constructor() { }
+    constructor() {
+        this.isAdmin = false;
+        this.userLogin = JSON.parse(localStorage.getItem('user'));
+        this.isAdmin = this.userLogin && this.userLogin.isAdmin;
+        console.log('LALALLA');
+    }
 };
 TabsPage.ctorParameters = () => [];
 TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
@@ -156,7 +166,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
   \************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"tab1\">\n      <ion-icon name=\"timer-outline\"></ion-icon>\n      <ion-label>Pending</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"tab2\">\n      <ion-icon name=\"checkmark-done-circle-outline\"></ion-icon>\n      <ion-label>Approved</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"tab3\">\n      <ion-icon name=\"people-outline\"></ion-icon>\n      <ion-label>Management</ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n\n</ion-tabs>\n";
+module.exports = "<ion-tabs>\r\n    <ion-tab-bar slot=\"bottom\">\r\n      <ion-tab-button tab=\"tab1\">\r\n        <ion-icon name=\"timer-outline\"></ion-icon>\r\n        <ion-label>Pending</ion-label>\r\n      </ion-tab-button>\r\n  \r\n      <ion-tab-button tab=\"tab2\">\r\n        <ion-icon name=\"checkmark-done-circle-outline\"></ion-icon>\r\n        <ion-label>Approved</ion-label>\r\n      </ion-tab-button>\r\n  \r\n      <ion-tab-button tab=\"tab3\">\r\n        <ion-icon name=\"people-outline\"></ion-icon>\r\n        <ion-label>Management</ion-label>\r\n      </ion-tab-button>\r\n    </ion-tab-bar>\r\n  \r\n</ion-tabs>\r\n";
 
 /***/ })
 

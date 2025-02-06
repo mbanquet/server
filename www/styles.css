@@ -11,14 +11,14 @@
   --ion-color-primary-shade: #3171e0;
   --ion-color-primary-tint: #4c8dff;
   /** secondary **/
-  --ion-color-secondary: #3dc2ff;
+  --ion-color-secondary: #7e6130;
   --ion-color-secondary-rgb: 61, 194, 255;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #36abe0;
   --ion-color-secondary-tint: #50c8ff;
   /** tertiary **/
-  --ion-color-tertiary: #5260ff;
+  --ion-color-tertiary: #7e6130;
   --ion-color-tertiary-rgb: 82, 96, 255;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
@@ -46,7 +46,7 @@
   --ion-color-danger-shade: #cf3c4f;
   --ion-color-danger-tint: #ed576b;
   /** dark **/
-  --ion-color-dark: #222428;
+  --ion-color-dark: #093f73 !important;
   --ion-color-dark-rgb: 34, 36, 40;
   --ion-color-dark-contrast: #ffffff;
   --ion-color-dark-contrast-rgb: 255, 255, 255;
@@ -163,8 +163,12 @@ html.ios ion-modal ion-toolbar {
  * Note 2: This should only apply to non-card and
  * non-sheet modals. Card and sheet modals have their
  * own criteria for displaying backdrops/box shadows.
+ *
+ * Do not use :not(.overlay-hidden) in place of
+ * .show-modal because that triggers a memory
+ * leak in Blink: https://bugs.chromium.org/p/chromium/issues/detail?id=1418768
  */
-ion-modal.modal-default:not(.overlay-hidden) ~ ion-modal.modal-default {
+ion-modal.modal-default.show-modal ~ ion-modal.modal-default {
   --backdrop-opacity: 0;
   --box-shadow: none;
 }
@@ -274,7 +278,7 @@ html.ios ion-modal.modal-card .ion-page {
  * These changes allow certain dimension values
  * such as fit-content to work correctly.
  */
-ion-modal .ion-page:not(ion-nav .ion-page) {
+ion-modal > .ion-page {
   position: relative;
   contain: layout style;
   height: 100%;
@@ -433,13 +437,6 @@ strong {
 }
 img {
   max-width: 100%;
-  border: 0;
-}
-svg:not(:root) {
-  overflow: hidden;
-}
-figure {
-  margin: 1em 40px;
 }
 hr {
   height: 1px;
@@ -511,6 +508,7 @@ button ion-label {
   pointer-events: none;
 }
 button {
+  padding: 0;
   border: 0;
   border-radius: 0;
   font-family: inherit;
@@ -534,11 +532,6 @@ button::-moz-focus-inner,
 input::-moz-focus-inner {
   padding: 0;
   border: 0;
-}
-input[type=checkbox],
-input[type=radio] {
-  padding: 0;
-  box-sizing: border-box;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {

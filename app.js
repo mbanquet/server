@@ -63,6 +63,8 @@ const CashInFlowV1 = require('./routes/cash_flow_v1');
 const AppCashFlow = require('./routes/appcashflow');
 const Secuirty = require('./routes/security');
 const Batuwa = require('./routes/batuwa');
+const CashInFlow2024_25 = require('./routes/appCashInFlow_2024_25');
+
 
 
 
@@ -106,8 +108,10 @@ app.use('/api/v1/debt', Debt)
 app.use('/api/v1/attendance', Attendance)
 app.use('/api/v1/app', AppCashFlow)
 app.use('/api/v1/security', Secuirty)
-app.use('/api/v2/cash-in-flow', CashInFlowV1)
+app.use('/api/v1/cash-in-flow', CashInFlowV1)
 app.use('/api/v1/batuwa', Batuwa)
+app.use('/api/v1/cashflow2024_25', CashInFlow2024_25)
+
 
 
 
@@ -209,7 +213,7 @@ app.get('/admin-mbh', (req,res) => {
   });
 
 app.use(express.static(process.cwd()+"/www/"));
-app.get('/tabs/tab2', (req,res) => {
+app.get('/finance', (req,res) => {
     res.sendFile(process.cwd()+"/www/index.html")
   });
 // const product_list_routes = require('./routes/product_listing');
